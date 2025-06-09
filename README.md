@@ -2,7 +2,7 @@
 *Your Digital Rotating Savings Community*  
 
 <div align="center">
-  <img src="./ekub_icon.png" alt="EKUB Banner" width="80%">
+  <img src="./equb_icon.png" alt="EKUB Banner" width="80%">
 </div>
 
 <p align="center">

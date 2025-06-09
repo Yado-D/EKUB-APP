@@ -49,11 +49,11 @@
 <div align="center">
   <table>
     <tr>
-      <td><img src="./screenshots/groups.png" alt="Group Creation" width="200"></td>
-      <td><img src="./screenshots/home.png" alt="Savings Dashboard" width="200"></td>
-      <td><img src="./screenshots/wheel.png" alt="Wheel Spin" width="200"></td>
-      <td><img src="./screenshots/history.png" alt="Transaction History" width="200"></td>
-      <td><img src="./screenshots/profile.png" alt="Profile" width="200"></td>
+      <td><img src="./groups.png" alt="Group Creation" width="200"></td>
+      <td><img src="./home.png" alt="Savings Dashboard" width="200"></td>
+      <td><img src="./wheel.png" alt="Wheel Spin" width="200"></td>
+      <td><img src="./history.png" alt="Transaction History" width="200"></td>
+      <td><img src="./profile.png" alt="Profile" width="200"></td>
     </tr>
     <tr align="center">
       <td>Group Creation</td>

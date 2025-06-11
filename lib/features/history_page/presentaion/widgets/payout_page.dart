@@ -1,5 +1,38 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-Widget payouts_page(){
-  return Container();
+import 'common_history_widget.dart';
+
+Widget payouts_page(BuildContext context){
+  return ListView(
+    children: [
+      ReusableHistoryContainer(
+        icon: Icons.add,
+        context: context,
+        title: "Payment to Friends Saving",
+        money: 230,
+        dateOfPayment: DateTime.now(),
+        statusIcon: Icons.check_circle,
+        onPayment: () {},
+      ),
+      ReusableHistoryContainer(
+        icon: Icons.add,
+        context: context,
+        title: "Payment to Friends Saving",
+        money: 230,
+        dateOfPayment: DateTime.now(),
+        statusIcon: Icons.check_circle,
+        onPayment: () {},
+      ),
+      ReusableHistoryContainer(
+        icon: Icons.add,
+        context: context,
+        title: "Payment to Friends Saving",
+        money: 230,
+        dateOfPayment: DateTime.now(),
+        statusIcon: Icons.check_circle,
+        onPayment: () {},
+      ),
+    ],
+  );
 }

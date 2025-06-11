@@ -100,7 +100,8 @@ class _HomePageState extends State<HomePage> {
                   cycleProgress: 0.5,
                   dateOfPayment: DateTime.now(),
                   isPayed: true,
-                  onTap: () {},
+                  onPayNow: () {},
+                  onEqubClicked: () {},
                 ),
                 const SizedBox(
                   height: 15,
@@ -112,7 +113,8 @@ class _HomePageState extends State<HomePage> {
                   cycleProgress: 0.5,
                   dateOfPayment: DateTime.now(),
                   isPayed: false,
-                  onTap: () {},
+                  onPayNow: () {},
+                  onEqubClicked: () {},
                 ),
                 const SizedBox(
                   height: 15,
@@ -132,12 +134,16 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
-                    SizedBox(width:5),
+                    SizedBox(width: 5),
                     homePaymentAndJoinGroupContainer(
                       context: context,
                       title: "Make Payment",
                       icon: Icons.payment,
-                      onTap: () => showPaymentDialog(context),
+                      onTap: () => showPaymentDialog(
+                        context: context,
+                        payingTo: "Family Group",
+                        amount: "500",
+                      ),
                     ),
                   ],
                 ),
@@ -178,6 +184,7 @@ class _HomePageState extends State<HomePage> {
                         title: "Payment to Friends Saving",
                         money: 200.0,
                         dateOfPayment: DateTime.now(),
+                        onTap: () {},
                       ),
                       recentTransactionContainer(
                         icon: Icons.minimize,
@@ -185,6 +192,7 @@ class _HomePageState extends State<HomePage> {
                         title: "Received Payout",
                         money: 185.0,
                         dateOfPayment: DateTime.now(),
+                        onTap: () {},
                       ),
                     ],
                   ),

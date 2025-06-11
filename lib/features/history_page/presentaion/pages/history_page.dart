@@ -36,8 +36,8 @@ class _HistoryPageState extends State<HistoryPage>
         controller: tabController,
         children: [
           allTransactions(context),
-          payments_page(),
-          payouts_page(),
+          payments_page(context),
+          payouts_page(context),
         ],
       ),
     );

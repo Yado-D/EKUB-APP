@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: ColorCollections.LightBlueColor),
+                      color: Colors.green.shade100),
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: ColorCollections.QuaterneryColor,
+                        backgroundColor: Colors.green.shade500,
                         radius: 20,
                         child: Icon(Icons.info_outline_rounded),
                       ),
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                         TextString: "View All",
                         FontSize: 15,
                         TextFontWeight: FontWeight.w700,
-                        TextColor: Colors.blue.shade900,
+                        TextColor: Colors.green.shade900,
                       ),
                     ),
                   ],

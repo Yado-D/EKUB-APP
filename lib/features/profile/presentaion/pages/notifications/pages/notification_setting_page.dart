@@ -1,5 +1,5 @@
 import 'package:ekub_application/features/profile/presentaion/pages/help/help_widgets/help_widget_page.dart';
-import 'package:ekub_application/features/profile/presentaion/pages/notifications/widgets/notification_widget.dart';
+import 'package:ekub_application/features/profile/presentaion/pages/notifications/widgets/notification_setting_widget.dart';
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {

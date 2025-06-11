@@ -242,8 +242,9 @@ class _SignupPageState extends State<SignupPage> {
                         height: 50,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).colorScheme.onPrimary),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green,
+                        ),
                         child: Center(
                           child: ReusableText(
                             TextString: "Register",

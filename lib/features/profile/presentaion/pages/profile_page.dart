@@ -4,7 +4,7 @@ import 'package:ekub_application/features/auth/presentation/pages/signin.dart';
 import 'package:ekub_application/features/home_page/presentation/page/home_page.dart';
 import 'package:ekub_application/features/profile/presentaion/pages/account_info_page.dart';
 import 'package:ekub_application/features/profile/presentaion/pages/help/pages/help_page.dart';
-import 'package:ekub_application/features/profile/presentaion/pages/notifications/pages/notification_page.dart';
+import 'package:ekub_application/features/profile/presentaion/pages/notifications/pages/notification_setting_page.dart';
 import 'package:ekub_application/features/profile/presentaion/widgets/profile_page_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.blue.shade100,
+                    backgroundColor: Colors.green.shade200,
                     radius: 30,
                     child: Center(
                       child: ReusableText(

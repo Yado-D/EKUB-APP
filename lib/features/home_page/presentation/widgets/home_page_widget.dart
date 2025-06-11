@@ -1,6 +1,7 @@
 import 'package:ekub_application/config/theme/app_color_pallet.dart';
 import 'package:ekub_application/core/utils/common_snackbar.dart';
 import 'package:ekub_application/core/utils/common_widget.dart';
+import 'package:ekub_application/features/home_page/presentation/page/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -32,34 +33,82 @@ AppBar homeAppBar(BuildContext context) {
             ),
           ],
         ),
-        Stack(
-          children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundColor: ColorCollections.DeepGreyColor,
-              backgroundImage: const AssetImage("assets/profile/yared.png"),
+        InkWell(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NotificationPage(),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.red,
-                  radius: 12,
-                  child: Center(
-                    child: ReusableText(
-                      FromTop: 0,
-                      FromBottom: 0,
-                      TextString: "1",
-                      FontSize: 16,
-                      TextFontWeight: FontWeight.w600,
-                      TextColor: Theme.of(context).colorScheme.onSecondary,
+          ),
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: ColorCollections.DeepGreyColor,
+                backgroundImage: const AssetImage("assets/profile/yared.png"),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 12,
+                    child: Center(
+                      child: ReusableText(
+                        FromTop: 0,
+                        FromBottom: 0,
+                        TextString: "1",
+                        FontSize: 16,
+                        TextFontWeight: FontWeight.w600,
+                        TextColor: Theme.of(context).colorScheme.onSecondary,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ],
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+AppBar homeNotificationAppBar(BuildContext context) {
+  return AppBar(
+    automaticallyImplyLeading: false,
+    leading: IconButton(
+      onPressed: () => Navigator.pop(context),
+      icon: Icon(
+        Icons.keyboard_arrow_left_rounded,
+        size: 30,
+      ),
+    ),
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ReusableText(
+              FromTop: 15,
+              FromBottom: 0,
+              FromLeft: 15,
+              TextString: "Notifications",
+              FontSize: 20,
+              TextFontWeight: FontWeight.w900,
+              TextColor: Theme.of(context).colorScheme.primary,
+            ),
+            ReusableText(
+              FromTop: 5,
+              FromLeft: 15,
+              TextString: "Manage your notifications",
+              FontSize: 16,
+              TextFontWeight: FontWeight.w600,
+              TextColor: Theme.of(context).colorScheme.onPrimary,
             ),
           ],
-        )
+        ),
       ],
     ),
   );
@@ -112,7 +161,7 @@ Widget equbsReusableContainer({
               Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  color: Colors.green.shade200,
                   borderRadius: BorderRadius.circular(25),
                   border: Border.all(
                       color: Theme.of(context).colorScheme.tertiaryContainer),
@@ -165,8 +214,8 @@ Widget equbsReusableContainer({
           LinearPercentIndicator(
             lineHeight: 14.0,
             percent: cycleProgress,
-            backgroundColor: Colors.blue.shade100,
-            progressColor: Colors.blue,
+            backgroundColor: Colors.green.shade200,
+            progressColor: Colors.green,
           ),
           const SizedBox(
             height: 18,
@@ -199,7 +248,7 @@ Widget equbsReusableContainer({
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    color: Colors.green.shade200,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
                         color: Theme.of(context).colorScheme.tertiaryContainer),
@@ -238,7 +287,7 @@ Widget homePaymentAndJoinGroupContainer({
     child: Container(
       padding: EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.tertiaryContainer,
+        color: Colors.green.shade200,
         borderRadius: BorderRadius.circular(15),
         border:
             Border.all(color: Theme.of(context).colorScheme.tertiaryContainer),
@@ -334,6 +383,69 @@ Widget recentTransactionContainer({
               ),
             ],
           ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget homeNotificationReusableContainer({
+  required BuildContext context,
+  required String title,
+  required String subtitle,
+  required VoidCallback onTap,
+}) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: Colors.grey.shade200,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 15,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ReusableText(
+                    FromTop: 0,
+                    FromBottom: 0,
+                    TextString: title,
+                    FontSize: 16,
+                    TextFontWeight: FontWeight.w900,
+                    TextColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  ReusableTextWithLongText(
+                    FromTop: 0,
+                    FromBottom: 0,
+                    TextString: subtitle,
+                    FontSize: 18,
+                    TextFontWeight: FontWeight.w500,
+                    TextColor: Colors.grey.shade700,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          CircleAvatar(
+            backgroundColor: Colors.green,
+            radius: 16,
+            child: ReusableText(
+              FromTop: 0,
+              FromBottom: 0,
+              TextString: "2",
+              FontSize: 16,
+            ),
+          )
         ],
       ),
     ),

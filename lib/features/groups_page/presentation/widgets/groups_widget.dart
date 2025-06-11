@@ -88,7 +88,7 @@ Widget equbGroupReusableContainer({
               Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  color: Colors.green.shade200,
                   borderRadius: BorderRadius.circular(25),
                   border: Border.all(
                       color: Theme.of(context).colorScheme.tertiaryContainer),
@@ -124,7 +124,7 @@ Widget equbGroupReusableContainer({
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: Colors.blue.shade100,
+                        backgroundColor: Colors.green.shade200,
                         radius: 16,
                         child: Center(
                           child: ReusableText(
@@ -154,7 +154,7 @@ Widget equbGroupReusableContainer({
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    color: Colors.green.shade200,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
                         color: Theme.of(context).colorScheme.tertiaryContainer),

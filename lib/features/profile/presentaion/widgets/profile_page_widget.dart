@@ -49,14 +49,18 @@ Widget profileReusableContainer({
       padding: EdgeInsets.all(15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon),
-          ReusableText(
-            FromBottom: 0,
-            TextString: title,
-            FontSize: 20,
-            TextFontWeight: FontWeight.w900,
-            TextColor: Theme.of(context).colorScheme.onPrimary,
+          SizedBox(width: 30,),
+          Expanded(
+            child: ReusableText(
+              FromBottom: 0,
+              TextString: title,
+              FontSize: 20,
+              TextFontWeight: FontWeight.w900,
+              TextColor: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
           Row(
             children: [

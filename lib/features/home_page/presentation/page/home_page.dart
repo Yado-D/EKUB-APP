@@ -132,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
+                    SizedBox(width:5),
                     homePaymentAndJoinGroupContainer(
                       context: context,
                       title: "Make Payment",

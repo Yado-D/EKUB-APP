@@ -1,4 +1,6 @@
+import 'package:ekub_application/config/theme/app_color_pallet.dart';
 import 'package:ekub_application/core/utils/common_snackbar.dart';
+import 'package:ekub_application/core/utils/common_widget.dart';
 import 'package:flutter/material.dart';
 
 class AccountInformationScreen extends StatefulWidget {
@@ -21,6 +23,13 @@ class _AccountInformationScreenState extends State<AccountInformationScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.keyboard_arrow_left_rounded,
+            size: 30,
+          ),
+        ),
         title: Text('Account Information'),
         actions: [
           IconButton(
@@ -144,13 +153,25 @@ class _AccountInformationScreenState extends State<AccountInformationScreen> {
           onSaved: (value) => _password = value ?? _password,
         ),
         SizedBox(height: 24),
-        ElevatedButton(
-          onPressed: _saveChanges,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-            child: Text('Save Changes'),
+        InkWell(
+          onTap: _saveChanges,
+          child: Container(
+            margin: EdgeInsets.only(top: 15),
+            padding: EdgeInsets.all(10),
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: ColorCollections.GreenColor,
+            ),
+            child: Center(
+              child: ReusableText(
+                TextString: "Save Changes",
+                FontSize: 18,
+              ),
+            ),
           ),
-        ),
+        )
       ],
     );
   }

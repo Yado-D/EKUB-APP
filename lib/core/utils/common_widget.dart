@@ -2,13 +2,13 @@
 
 import 'dart:ui';
 
+import 'package:ekub_application/features/auth/presentation/pages/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/theme/app_color_pallet.dart';
-
 
 //this is for reusable text
 
@@ -53,6 +53,62 @@ class ReusableText extends StatelessWidget {
           fontWeight: TextFontWeight,
         ),
       ),
+    );
+  }
+}
+
+
+class ReusableTextWithLongText extends StatelessWidget {
+  String TextString;
+  Color TextColor;
+  double FontSize;
+  FontWeight TextFontWeight;
+  double FromTop;
+  double FromLeft;
+  double FromRight;
+  double FromBottom;
+
+  ReusableTextWithLongText({
+    super.key,
+    required this.TextString,
+    this.TextColor = ColorCollections.PrimaryColor,
+    required this.FontSize,
+    this.TextFontWeight = FontWeight.w500,
+    this.FromTop = 5,
+    this.FromLeft = 5,
+    this.FromRight = 5,
+    this.FromBottom = 5,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(
+        top: FromTop,
+        left: FromLeft,
+        right: FromRight,
+        bottom: FromBottom,
+      ),
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return LinearGradient(
+            colors: [Colors.black, Colors.transparent],
+            stops: [0.8, 1.0],
+            end: Alignment.centerRight,
+          ).createShader(bounds);
+        },
+        blendMode: BlendMode.dstIn,
+        child: Text(
+          TextString,
+          maxLines: 1,
+          overflow: TextOverflow.clip,
+          style: GoogleFonts.lato(
+            color: TextColor,
+            fontSize: FontSize,
+            fontWeight: TextFontWeight,
+          ),
+        ),
+      )
     );
   }
 }
@@ -106,11 +162,11 @@ class AppButton extends StatelessWidget {
 
 Widget reusableTextField({
   required BuildContext context,
-  String? iconName,  // Changed to camelCase
-  String suffixIconName = '',  // Changed to camelCase
+  String? iconName, // Changed to camelCase
+  String suffixIconName = '', // Changed to camelCase
   required String hintText,
   required String textType,
-  required ValueChanged<String> onChanged,  // Changed to non-nullable callback
+  required ValueChanged<String> onChanged, // Changed to non-nullable callback
   double widthOfContainer = 300,
   double widthOfTextField = 150,
   double fromTop = 0,
@@ -128,10 +184,9 @@ Widget reusableTextField({
     ),
     padding: const EdgeInsets.only(left: 17),
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.primaryContainer,
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(color: Theme.of(context).colorScheme.onPrimary)
-    ),
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Theme.of(context).colorScheme.onPrimary)),
     child: Row(
       children: [
         if (iconName != null)
@@ -148,13 +203,14 @@ Widget reusableTextField({
         Expanded(
           child: TextField(
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
-            onChanged: onChanged,  // Directly use the callback
+            onChanged: onChanged, // Directly use the callback
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
               isDense: true,
               hintText: hintText,
-              hintStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              border: InputBorder.none,  // Simplified border configuration
+              hintStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              border: InputBorder.none, // Simplified border configuration
               enabledBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
@@ -173,8 +229,6 @@ Widget reusableTextField({
     ),
   );
 }
-
-
 
 Widget reusableTextFieldForCountryCode({
   String? icon_name,
@@ -475,7 +529,6 @@ AppBar ReusableAppBar(VoidCallback ontap, BuildContext context) {
   );
 }
 
-
 Drawer CustomDrowerElement(
     VoidCallback ontap, BuildContext context, Animation<Offset> animation) {
   return Drawer(
@@ -585,79 +638,77 @@ Widget DrowerWidget(IconData icons, String text, VoidCallback ontap) {
 
 LogoutShowDialogue(BuildContext context) {
   return showDialog(
+    barrierColor: Colors.red.shade200,
       context: context,
       builder: (context) {
         return SimpleDialog(
+          backgroundColor: Colors.green.shade200,
           children: [
+            Center(
+              child: ReusableText(
+                TextColor: Colors.red.shade900,
+                TextString: "Log Out",
+                FontSize: 20,
+                TextFontWeight: FontWeight.w700,
+              ),
+            ),
+            ReusableText(
+              FromLeft: 20,
+              TextColor: ColorCollections.TeritiaryColor,
+              TextString: " Are you sure you want to logout ?",
+              FontSize: 19,
+            ),
             Container(
-              child: Column(
+              margin: EdgeInsets.only(left: 30, right: 30, top: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        ReusableText(
-                          TextColor: Colors.red.shade900,
-                          TextString: "AppLocalizations.of(context)!.logOut",
-                          FontSize: 20,
-                          TextFontWeight: FontWeight.w700,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SigninPage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: ColorCollections.SecondaryColor,
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        ReusableText(
-                          TextColor: ColorCollections.TeritiaryColor,
-                          TextString:
-                              " AppLocalizations.of(context)!.areYouSureLogout",
-                          FontSize: 19,
+                        child: Center(
+                          child: ReusableText(
+                            TextString: " Confirm",
+                            FontSize: 18,
+                            TextColor: Colors.red.shade900,
+                          ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 30, right: 30, top: 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/sign_in_page');
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: ColorCollections.SecondaryColor,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Center(
-                              child: ReusableText(
-                                TextString:
-                                    " AppLocalizations.of(context)!.confirm",
-                                FontSize: 18,
-                                TextColor: Colors.red.shade900,
-                              ),
-                            ),
+                  const SizedBox(width: 10,),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: ColorCollections.GreenColor,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Center(
+                          child: ReusableText(
+                            TextString: "Cancel",
+                            FontSize: 18,
+                            TextColor: ColorCollections.PrimaryColor,
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: ColorCollections.TeritiaryColor,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Center(
-                              child: ReusableText(
-                                TextString:
-                                    "AppLocalizations.of(context)!.cancel",
-                                FontSize: 18,
-                                TextColor: ColorCollections.PrimaryColor,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                      ),
                     ),
                   )
                 ],

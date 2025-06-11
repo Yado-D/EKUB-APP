@@ -1,9 +1,14 @@
 import 'package:ekub_application/core/utils/AppShowDialogueWidget.dart';
 import 'package:ekub_application/core/utils/common_widget.dart';
 import 'package:ekub_application/features/auth/presentation/pages/signin.dart';
+import 'package:ekub_application/features/home_page/presentation/page/home_page.dart';
 import 'package:ekub_application/features/profile/presentaion/pages/account_info_page.dart';
+import 'package:ekub_application/features/profile/presentaion/pages/help/pages/help_page.dart';
+import 'package:ekub_application/features/profile/presentaion/pages/notifications/pages/notification_page.dart';
 import 'package:ekub_application/features/profile/presentaion/widgets/profile_page_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'payment_methods/pages/payment_methods_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -70,7 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(
               height: 20,
             ),
-
             profileReusableContainer(
               context: context,
               isNotification: false,
@@ -90,7 +94,12 @@ class _ProfilePageState extends State<ProfilePage> {
               isNotification: false,
               title: "Payment Methods",
               icon: Icons.payment,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PaymentMethods(),
+                ),
+              ),
             ),
             profileReusableContainer(
               context: context,
@@ -98,36 +107,32 @@ class _ProfilePageState extends State<ProfilePage> {
               notificationNumber: 2,
               title: "Notifications",
               icon: Icons.notifications_none,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationPage(),
+                ),
+              ),
             ),
             profileReusableContainer(
               context: context,
               isNotification: false,
               title: "Help & Support",
               icon: Icons.help_outline_rounded,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HelpPage(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 20,
             ),
             InkWell(
-              onTap: () {
-                CommonShowDialogue(
-                  context: context,
-                  TitleText: "Are you sure you want to logout from the app ?",
-                  cancelOnTap: () {
-                    Navigator.pop(context);
-                  },
-                  confirmOnTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                        builder: (context) => SigninPage(),
-                      ),
-                      (pridictable) => false,
-                    );
-                  },
-                );
-              },
+              onTap: () => LogoutShowDialogue(context),
               child: Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(

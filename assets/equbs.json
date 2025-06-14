@@ -1,0 +1,28 @@
+{
+  "equbs": [
+    {
+      "name" : "Friendship Saving",
+      "id": 1,
+      "members_no": 20,
+      "cycle_progress" : 0.3
+    },
+    {
+      "name" : "Friendship Saving",
+      "id": 2,
+      "members_no": 20,
+      "cycle_progress" : 0.5
+    },
+    {
+      "name" : "Colleague Saving",
+      "id": 3,
+      "members_no": 20,
+      "cycle_progress" : 0.8
+    },
+    {
+      "name" : "Yegara Ekub",
+      "id": 4,
+      "members_no": 20,
+      "cycle_progress" : 0.3
+    }
+  ]
+}

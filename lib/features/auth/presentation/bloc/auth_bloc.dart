@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:ekub_application/features/auth/domain/entities/user.dart';
 import 'package:ekub_application/features/auth/domain/usecases/user_signin.dart';
 import 'package:meta/meta.dart';
 
@@ -21,10 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignup>(authSignup);
   }
 
-  FutureOr<void> authSignin(
-    AuthSignin event,
-    Emitter emit,
-  ) async {
+  FutureOr<void> authSignin(AuthSignin event, Emitter emit) async {
     emit(AuthLoading());
     print("on the login bloc function");
     emit(AuthLoading());
@@ -40,10 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (onRight) => emit(AuthSuccess(onRight)));
   }
 
-  FutureOr<void> authSignup(
-    AuthSignup event,
-    Emitter emit,
-  ) async {
+  FutureOr<void> authSignup(AuthSignup event, Emitter emit) async {
     print("on the signup bloc function");
     emit(AuthLoading());
     await Future.delayed(const Duration(seconds: 5));

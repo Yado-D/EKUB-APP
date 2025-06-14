@@ -1,5 +1,8 @@
+import 'package:ekub_application/core/error/exception.dart';
+import 'package:ekub_application/features/auth/data/models/user_model.dart';
+
 abstract interface class AuthRemoteDataSource {
-  Future<String> registerUser({
+  Future<UserModel> registerUser({
     required String username,
     required String email,
     required String phone,
@@ -7,7 +10,7 @@ abstract interface class AuthRemoteDataSource {
     required String confirmPassword,
   });
 
-  Future<String> loginUser({
+  Future<UserModel> loginUser({
     required String username,
     required String password,
   });
@@ -15,20 +18,25 @@ abstract interface class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImplm implements AuthRemoteDataSource {
   @override
-  Future<String> loginUser({
+  Future<UserModel> loginUser({
     required String username,
     required String password,
   }) async {
     try {
-      Future.delayed(Duration(seconds: 5));
-      return "you login Successfully";
+      Future.delayed(Duration(seconds: 2));
+      return UserModel(
+        username: username,
+        email: "defoult@gmail.com",
+        phone: "090000000",
+        password: password,
+      );
     } catch (e) {
-      return "Error while login user";
+      throw ServerException(e.toString());
     }
   }
 
   @override
-  Future<String> registerUser({
+  Future<UserModel> registerUser({
     required String username,
     required String email,
     required String phone,
@@ -36,10 +44,15 @@ class AuthRemoteDataSourceImplm implements AuthRemoteDataSource {
     required String confirmPassword,
   }) async {
     try {
-      Future.delayed(Duration(seconds: 5));
-      return "you signup Successfully";
+      Future.delayed(Duration(seconds: 2));
+      return UserModel(
+        username: username,
+        email: email,
+        phone: phone,
+        password: password,
+      );
     } catch (e) {
-      return "Error while signup user";
+      throw ServerException(e.toString());
     }
   }
 }

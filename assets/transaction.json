@@ -1,0 +1,22 @@
+{
+  "transaction_history": [
+    {
+      "user_id": 2,
+      "equb_id":2,
+      "amount": 200,
+      "deposit": false
+    },
+    {
+      "user_id": 1,
+      "equb_id":2,
+      "amount": 100,
+      "deposit": true
+    },
+    {
+      "user_id": 3,
+      "equb_id":3,
+      "amount": 180,
+      "deposit": false
+    }
+  ]
+}

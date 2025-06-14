@@ -1,8 +1,9 @@
 import 'package:ekub_application/core/error/failure.dart';
+import 'package:ekub_application/features/auth/domain/entities/user.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class AuthRepository {
-  Future<Either<Failure, String>> registerUser({
+  Future<Either<Failure, User>> registerUser({
     required String username,
     required String email,
     required String phone,
@@ -10,7 +11,7 @@ abstract interface class AuthRepository {
     required String confirmPassword,
   });
 
-  Future<Either<Failure, String>> loginUser({
+  Future<Either<Failure, User>> loginUser({
     required String username,
     required String password,
   });

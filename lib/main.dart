@@ -1,5 +1,9 @@
 import 'package:ekub_application/config/theme/theme_mode_provider.dart';
 import 'package:ekub_application/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ekub_application/features/home_page/data/data_source/home_remote_data_source.dart';
+import 'package:ekub_application/features/home_page/data/repository/home_repository_implm.dart';
+import 'package:ekub_application/features/home_page/domain/usecases/home_%20equb_loading.dart';
+import 'package:ekub_application/features/home_page/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +21,15 @@ Future<void> main() async {
       providers: [
         BlocProvider(
           create: (create) => serviceLocator<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (create) => HomeBloc(
+            homeEqubLoading: HomeEqubLoading(
+              HomeRepositoryImpl(
+                HomeRemoteDataResourceImplm(),
+              ),
+            ),
+          ),
         ),
       ],
       child: const MyApp(),

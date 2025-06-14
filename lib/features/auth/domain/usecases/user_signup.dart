@@ -1,14 +1,15 @@
 import 'package:ekub_application/core/error/failure.dart';
 import 'package:ekub_application/core/usecases/usecase.dart';
+import 'package:ekub_application/features/auth/domain/entities/user.dart';
 import 'package:ekub_application/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/src/either.dart';
 
-class UserSignup implements UseCase<String, UserSignupParams> {
+class UserSignup implements UseCase<User, UserSignupParams> {
   AuthRepository authRepository;
   UserSignup(this.authRepository);
 
   @override
-  Future<Either<Failure, String>> call(UserSignupParams params) async {
+  Future<Either<Failure, User>> call(UserSignupParams params) async {
     return await authRepository.registerUser(
       username: params.username,
       email: params.emial,

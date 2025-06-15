@@ -90,80 +90,155 @@ Widget reusableSliceContainer() {
 Widget liveChatContainer({
   required BuildContext context,
   required VoidCallback onChatStart,
+  required bool isClicked,
 }) {
-  return Container(
-    padding: EdgeInsets.all(15),
-    height: 170,
-    width: double.infinity,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(color: Colors.grey),
+  return ConstrainedBox(
+    constraints: BoxConstraints(minHeight: 170, maxHeight: 300),
+    child: Container(
+      padding: EdgeInsets.all(15),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.green.shade100,
+                ),
+                child: Icon(
+                  Icons.chat_bubble_outline,
+                  color: ColorCollections.GreenColor,
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ReusableText(
+                    FromTop: 5,
+                    FromBottom: 0,
+                    TextString: "Live Chat",
+                    FontSize: 18,
+                    TextFontWeight: FontWeight.w700,
+                    TextColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  ReusableText(
+                    FromTop: 0,
+                    FromBottom: 0,
+                    TextString: "Online - Quick Response",
+                    FontSize: 18,
+                    TextFontWeight: FontWeight.w700,
+                    TextColor: ColorCollections.GreenColor,
+                  ),
+                ],
+              )
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          !isClicked
+              ? InkWell(
+                  onTap: onChatStart,
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green,
+                    ),
+                    child: Center(
+                      child: ReusableText(
+                        FromTop: 0,
+                        FromBottom: 0,
+                        TextString: "Start Chat",
+                        FontSize: 20,
+                        TextFontWeight: FontWeight.w700,
+                        TextColor: ColorCollections.PrimaryColor,
+                      ),
+                    ),
+                  ),
+                )
+              : LiveChatBox(context),
+        ],
+      ),
     ),
+  );
+}
+
+Widget LiveChatBox(BuildContext context) {
+  return Container(
     child: Column(
       children: [
+        Container(
+          padding: EdgeInsets.all(15),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            // border: Border.all(color: Colors.grey),
+            color: Colors.green.shade50,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ReusableText(
+                FromTop: 0,
+                FromBottom: 0,
+                TextString: "Support Agent",
+                FontSize: 16,
+                TextFontWeight: FontWeight.w700,
+                TextColor: ColorCollections.TeritiaryColor,
+              ),
+              ReusableText(
+                FromTop: 0,
+                FromBottom: 0,
+                TextString: "Hello! How can I help you today?",
+                FontSize: 16,
+                TextFontWeight: FontWeight.w700,
+                TextColor: ColorCollections.TeritiaryColor,
+              ),
+            ],
+          ),
+        ),
         Row(
           children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.green.shade100,
-              ),
-              child: Icon(
-                Icons.chat_bubble_outline,
-                color: ColorCollections.GreenColor,
+            Expanded(
+              child: reusableTextField(
+                context: context,
+                hintText: "Type your message",
+                textType: 'message',
+                onChanged: (onChanged) {},
               ),
             ),
             SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ReusableText(
-                  FromTop: 5,
-                  FromBottom: 0,
-                  TextString: "Live Chat",
-                  FontSize: 18,
-                  TextFontWeight: FontWeight.w700,
-                  TextColor: Theme.of(context).colorScheme.primary,
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.green.shade100,
                 ),
-                ReusableText(
-                  FromTop: 0,
-                  FromBottom: 0,
-                  TextString: "Online - Quick Response",
-                  FontSize: 18,
-                  TextFontWeight: FontWeight.w700,
-                  TextColor: ColorCollections.GreenColor,
+                child: Icon(
+                  Icons.send_outlined,
+                  color: ColorCollections.GreenColor,
                 ),
-              ],
-            )
-          ],
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        InkWell(
-          onTap: onChatStart,
-          child: Container(
-            height: 50,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.green,
-            ),
-            child: Center(
-              child: ReusableText(
-                FromTop: 0,
-                FromBottom: 0,
-                TextString: "Start Chat",
-                FontSize: 20,
-                TextFontWeight: FontWeight.w700,
-                TextColor: ColorCollections.PrimaryColor,
               ),
             ),
-          ),
+          ],
         )
       ],
     ),
@@ -371,22 +446,26 @@ Widget faqWidget(BuildContext context) {
             const SizedBox(height: 15),
             helpFaqExpansionTile(
               title: "What is EQUB and how does it work?",
-              subTitle: "EQUB is a traditional rotating savings group...",
+              subTitle:
+                  "EQUB is a traditional rotating savings group where members contribute a fixed amount regularly. Each period, one member receives the total pot through a fair selection process.",
             ),
             const SizedBox(height: 10),
             helpFaqExpansionTile(
               title: "How is the winner selected each week?",
-              subTitle: "Winners are selected through our digital wheel...",
+              subTitle:
+                  "Winners are selected through our digital wheel of chance system, ensuring a fair and transparent process for all members.",
             ),
             const SizedBox(height: 10),
             helpFaqExpansionTile(
               title: "What happens if someone misses a payment?",
-              subTitle: "Members who miss payments may be subject...",
+              subTitle:
+                  "Members who miss payments may be subject to penalties and may lose their eligibility for the next draw. We encourage consistent participation.",
             ),
             const SizedBox(height: 10),
             helpFaqExpansionTile(
               title: "Is my money safe in EQUB?",
-              subTitle: "Yes, we use bank-grade security and encryption...",
+              subTitle:
+                  "Yes, we use bank-grade security and encryption. All transactions are protected and funds are held in secure escrow accounts.",
             ),
           ],
         ),

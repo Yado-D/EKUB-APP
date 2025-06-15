@@ -13,7 +13,7 @@ class HelpPage extends StatefulWidget {
 
 class _HelpPageState extends State<HelpPage> {
   DropdownOptions? selectedValue;
-
+  bool isLiveChatActive =false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +48,11 @@ class _HelpPageState extends State<HelpPage> {
                 ),
                 liveChatContainer(
                   context: context,
+                  isClicked: isLiveChatActive,
                   onChatStart: () {
-                    
+                    setState(() {
+                      isLiveChatActive=true;
+                    });
                   },
                 ),
                 SizedBox(

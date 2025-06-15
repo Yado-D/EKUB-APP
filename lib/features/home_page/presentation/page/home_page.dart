@@ -3,6 +3,7 @@ import 'package:ekub_application/core/utils/common_snackbar.dart';
 import 'package:ekub_application/core/utils/common_widget.dart';
 import 'package:ekub_application/features/groups_page/presentation/pages/groups_page.dart';
 import 'package:ekub_application/features/home_page/presentation/bloc/home_bloc.dart';
+import 'package:ekub_application/features/home_page/presentation/page/equb_detail_page.dart';
 import 'package:ekub_application/features/home_page/presentation/widgets/home_shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -132,8 +133,19 @@ class _HomePageState extends State<HomePage> {
                           cycleProgress: data.cycle_progress,
                           dateOfPayment: DateTime.now(),
                           isPayed: true,
-                          onPayNow: () {},
-                          onEqubClicked: () {},
+                          onPayNow: () => showPaymentDialog(
+                            context: context,
+                            payingTo: "Family Group",
+                            amount: "500",
+                          ),
+                          onEqubClicked: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EqubDetailPage(),
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

@@ -1,6 +1,7 @@
 import 'package:ekub_application/config/theme/app_color_pallet.dart';
 import 'package:ekub_application/core/utils/common_snackbar.dart';
 import 'package:ekub_application/core/utils/common_widget.dart';
+import 'package:ekub_application/core/utils/toast_info.dart';
 import 'package:ekub_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ekub_application/features/auth/presentation/pages/signup.dart';
 import 'package:ekub_application/features/home_page/presentation/page/index_page.dart';
@@ -126,12 +127,19 @@ class _SigninPageState extends State<SigninPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        context.read<AuthBloc>().add(
-                              AuthSignin(
-                                username: username,
-                                password: password,
-                              ),
-                            );
+                        if(username.isEmpty || username.length<3){
+                          toastInfo(toastInfo: "Username is empty or wrong username.");
+                        }else if(password.isEmpty||password.length<5){
+                          toastInfo(toastInfo: "password is empty or wrong password.");
+                        }
+                        else{
+                          context.read<AuthBloc>().add(
+                            AuthSignin(
+                              username: username,
+                              password: password,
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         margin: const EdgeInsets.only(left: 30, right: 30),

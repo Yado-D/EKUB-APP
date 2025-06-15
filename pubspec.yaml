@@ -51,6 +51,7 @@ dependencies:
   flutter_launcher_icons:
   dotted_border:
   shimmer:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,7 @@ flutter:
   assets:
      - assets/onboarding/
      - assets/profile/
+     - assets/icons/
      - assets/louncher_icon/equb_icon.png
      - assets/
 

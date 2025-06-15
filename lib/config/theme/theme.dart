@@ -7,6 +7,7 @@ import 'app_color_pallet.dart';
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   colorScheme: lightColorScheme,
+  scaffoldBackgroundColor: ColorCollections.PrimaryColor,
 
   // Component theming
   appBarTheme: AppBarTheme(
@@ -34,6 +35,7 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: darkColorScheme,
+  scaffoldBackgroundColor: ColorCollections.TeritiaryColor,
 
   // Component theming (dark)
   appBarTheme: AppBarTheme(

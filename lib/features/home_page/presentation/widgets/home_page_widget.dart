@@ -128,6 +128,7 @@ Widget equbsReusableContainer({
     onTap: onEqubClicked,
     child: Container(
       padding: EdgeInsets.all(15),
+      margin: EdgeInsets.only(top: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.grey.shade100),
@@ -398,6 +399,7 @@ Widget homeNotificationReusableContainer({
   return InkWell(
     onTap: onTap,
     child: Container(
+      height: 100,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -408,42 +410,44 @@ Widget homeNotificationReusableContainer({
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 15,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ReusableText(
-                    FromTop: 0,
-                    FromBottom: 0,
-                    TextString: title,
-                    FontSize: 16,
-                    TextFontWeight: FontWeight.w900,
-                    TextColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  ReusableTextWithLongText(
-                    FromTop: 0,
-                    FromBottom: 0,
-                    TextString: subtitle,
-                    FontSize: 18,
-                    TextFontWeight: FontWeight.w500,
-                    TextColor: Colors.grey.shade700,
-                  ),
-                ],
-              ),
-            ],
+          Expanded(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ReusableText(
+                      FromTop: 0,
+                      FromBottom: 0,
+                      TextString: title,
+                      FontSize: 16,
+                      TextFontWeight: FontWeight.w900,
+                      TextColor: Theme.of(context).colorScheme.primary,
+                    ),
+                    ReusableTextWithLongText(
+                      FromTop: 0,
+                      FromBottom: 0,
+                      TextString: subtitle,
+                      FontSize: 18,
+                      TextFontWeight: FontWeight.w500,
+                      TextColor: Colors.grey.shade700,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           CircleAvatar(
             backgroundColor: Colors.green,
-            radius: 16,
+            radius: 13,
             child: ReusableText(
               FromTop: 0,
               FromBottom: 0,
               TextString: "2",
-              FontSize: 16,
+              FontSize: 15,
             ),
           )
         ],

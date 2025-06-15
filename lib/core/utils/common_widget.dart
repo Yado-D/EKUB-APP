@@ -57,7 +57,6 @@ class ReusableText extends StatelessWidget {
   }
 }
 
-
 class ReusableTextWithLongText extends StatelessWidget {
   String TextString;
   Color TextColor;
@@ -83,34 +82,33 @@ class ReusableTextWithLongText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      margin: EdgeInsets.only(
-        top: FromTop,
-        left: FromLeft,
-        right: FromRight,
-        bottom: FromBottom,
-      ),
-      child: ShaderMask(
-        shaderCallback: (Rect bounds) {
-          return LinearGradient(
-            colors: [Colors.black, Colors.transparent],
-            stops: [0.8, 1.0],
-            end: Alignment.centerRight,
-          ).createShader(bounds);
-        },
-        blendMode: BlendMode.dstIn,
-        child: Text(
-          TextString,
-          maxLines: 1,
-          overflow: TextOverflow.clip,
-          style: GoogleFonts.lato(
-            color: TextColor,
-            fontSize: FontSize,
-            fontWeight: TextFontWeight,
-          ),
+        width: 300,
+        margin: EdgeInsets.only(
+          top: FromTop,
+          left: FromLeft,
+          right: FromRight,
+          bottom: FromBottom,
         ),
-      )
-    );
+        child: ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return LinearGradient(
+              colors: [Colors.black, Colors.transparent],
+              stops: [0.8, 1.0],
+              end: Alignment.centerRight,
+            ).createShader(bounds);
+          },
+          blendMode: BlendMode.dstIn,
+          child: Text(
+            TextString,
+            maxLines: 1,
+            overflow: TextOverflow.clip,
+            style: GoogleFonts.lato(
+              color: TextColor,
+              fontSize: FontSize,
+              fontWeight: TextFontWeight,
+            ),
+          ),
+        ));
   }
 }
 
@@ -174,6 +172,9 @@ Widget reusableTextField({
   double fromBottom = 0,
   double fromRight = 0,
   double fromLeft = 0,
+  Color focusedBorderColor = Colors.grey,
+  Color enabledBorderColor = Colors.grey,
+  Color disabledBorderColor = Colors.grey,
 }) {
   return Container(
     height: 45.h,
@@ -183,11 +184,12 @@ Widget reusableTextField({
       left: fromLeft.w,
       right: fromRight.w,
     ),
-    padding: const EdgeInsets.only(left: 17),
+    // padding: const EdgeInsets.only(left: 17),
     decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Theme.of(context).colorScheme.onPrimary)),
+      color: Theme.of(context).colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(10),
+      // border: Border.all(color: Theme.of(context).colorScheme.onPrimary)
+    ),
     child: Row(
       children: [
         if (iconName != null)
@@ -204,17 +206,31 @@ Widget reusableTextField({
         Expanded(
           child: TextField(
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
-            onChanged: onChanged, // Directly use the callback
+            onChanged: onChanged,
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
               isDense: true,
               hintText: hintText,
               hintStyle:
                   TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              border: InputBorder.none, // Simplified border configuration
-              enabledBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
+              border: InputBorder.none,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1.5,
+                  color: enabledBorderColor,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: disabledBorderColor,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 1.5,
+                  color: focusedBorderColor,
+                ),
+              ),
             ),
             obscureText: textType == "password",
           ),
@@ -639,7 +655,7 @@ Widget DrowerWidget(IconData icons, String text, VoidCallback ontap) {
 
 LogoutShowDialogue(BuildContext context) {
   return showDialog(
-    barrierColor: Colors.red.shade200,
+      barrierColor: Colors.red.shade200,
       context: context,
       builder: (context) {
         return SimpleDialog(
@@ -690,7 +706,9 @@ LogoutShowDialogue(BuildContext context) {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -802,5 +820,75 @@ Widget CommonSliderWidget({
         ),
       ),
     ],
+  );
+}
+
+//COMMENT TEXT FIELD
+
+Widget reusableCommentTextField({
+  required BuildContext context,
+  String suffixIconName = '', // Changed to camelCase
+  required String hintText,
+  required String textType,
+  required ValueChanged<String> onChanged, // Changed to non-nullable callback
+  double widthOfContainer = 300,
+  double widthOfTextField = 150,
+  double fromTop = 0,
+  double fromBottom = 0,
+  double fromRight = 0,
+  double fromLeft = 0,
+  Color focusedBorderColor = Colors.grey,
+  Color enabledBorderColor = Colors.grey,
+  Color disabledBorderColor = Colors.grey,
+}) {
+  return Container(
+    height: 150.h,
+    margin: EdgeInsets.only(
+      top: fromTop.w,
+      bottom: fromBottom.w,
+      left: fromLeft.w,
+      right: fromRight.w,
+    ),
+    // padding: const EdgeInsets.only(left: 17),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(10),
+      // border: Border.all(color: Theme.of(context).colorScheme.onPrimary)
+    ),
+    child: TextField(
+      style: TextStyle(color: Theme.of(context).colorScheme.primary),
+      onChanged: onChanged,
+      expands: true,
+      maxLines: null,
+      textAlignVertical: TextAlignVertical.top,
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        isDense: true,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: Colors.grey,
+          fontWeight: FontWeight.bold,
+        ),
+        border: InputBorder.none,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.5,
+            color: enabledBorderColor,
+          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: disabledBorderColor,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.5,
+            color: focusedBorderColor,
+          ),
+        ),
+      ),
+      obscureText: textType == "password",
+    ),
   );
 }

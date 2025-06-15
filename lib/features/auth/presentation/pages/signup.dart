@@ -1,6 +1,7 @@
 import 'package:ekub_application/config/theme/app_color_pallet.dart';
 import 'package:ekub_application/core/utils/common_snackbar.dart';
 import 'package:ekub_application/core/utils/common_widget.dart';
+import 'package:ekub_application/core/utils/toast_info.dart';
 import 'package:ekub_application/features/auth/presentation/pages/signin.dart';
 import 'package:ekub_application/features/home_page/presentation/page/index_page.dart';
 import 'package:flutter/gestures.dart';
@@ -226,16 +227,41 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        print("clicked");
-                        context.read<AuthBloc>().add(
-                              AuthSignup(
-                                username: username,
-                                email: email,
-                                phone: phone,
-                                password: password,
-                                confirmPassword: confirmPassword,
-                              ),
-                            );
+                        if (username.isEmpty || username.length < 3) {
+                          toastInfo(
+                              toastInfo:
+                                  "Username is empty or wrong username.");
+                        } else if (password.isEmpty || password.length < 5) {
+                          toastInfo(
+                              toastInfo:
+                                  "password is empty or wrong password.");
+                        } else if (email.isEmpty || email.length < 5) {
+                          toastInfo(
+                              toastInfo: "email is empty or wrong email.");
+                        } else if (phone.isEmpty || phone.length < 5) {
+                          toastInfo(
+                              toastInfo:
+                                  "phone is empty or wrong phone number.");
+                        } else if (confirmPassword.isEmpty ||
+                            confirmPassword.length < 5) {
+                          toastInfo(
+                              toastInfo:
+                                  " confirm password is empty or wrong password.");
+                        } else if (confirmPassword != password) {
+                          toastInfo(
+                              toastInfo:
+                                  "confirm password and password not match.");
+                        } else {
+                          context.read<AuthBloc>().add(
+                                AuthSignup(
+                                  username: username,
+                                  email: email,
+                                  phone: phone,
+                                  password: password,
+                                  confirmPassword: confirmPassword,
+                                ),
+                              );
+                        }
                       },
                       child: Container(
                         margin: const EdgeInsets.only(left: 30, right: 30),
